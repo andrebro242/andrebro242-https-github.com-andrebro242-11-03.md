@@ -51,7 +51,7 @@ sudo service elasticsearch restart
 
     curl -X GET 'localhost:9200/_cluster/health?pretty'
 
-![Задание 1](Решение1.png)
+![Задание 1](решение1.png)
 
 Задание 2. Кибана
 Установите и запустите Кибану.
@@ -95,7 +95,7 @@ http://127.0.0.1:5601/app/dev_tools#/console
 
     GET /_cluster/health?pretty
 
-![Задание 2](Решение2.png)
+![Задание 2](решение2.png)
 
 Задание 3. Logstash
 Установите и запустите Logstash и Nginx. С помощью Logstash отправьте лог доступа Nginx в Elasticsearch.
@@ -148,7 +148,7 @@ sudo service logstash start
 
     http://192.168.6.128:5601
 
-![Задание 3](Решение3.png)
+![Задание 3](решение3.png)
 
 Задание 4. Filebeat.
 Установите и запустите Filebeat. Переключите поставку журналов Nginx с Logstash на Filebeat.
@@ -180,4 +180,4 @@ sudo service filebeat start
 
 http://127.0.0.1:5601
 
-![Задание 4](Решение4.png)
+![Задание 4](решение4.png)
