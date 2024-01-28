@@ -24,11 +24,11 @@ sudo service elasticsearch start
 
 network.host: 0.0.0.0
 
-# systemctl restart elasticsearch.service
+systemctl restart elasticsearch.service
 
 Смотрим, что получилось:
 
-# netstat -tulnp | grep 9200
+netstat -tulnp | grep 9200
 tcp6       0      0 127.0.0.1:9200          :::*                    LISTEN      19788/java
 
 3.Изменение имени кластера:
@@ -51,7 +51,7 @@ sudo service elasticsearch restart
 
     curl -X GET 'localhost:9200/_cluster/health?pretty'
 
-![Задание 1](Решение%1.png)
+![Задание 1](Решение1.png)
 
 Задание 2. Кибана
 Установите и запустите Кибану.
@@ -67,9 +67,9 @@ sudo apt install kibana
 
 sudo service kibana start
 
-# systemctl status kibana.service
+systemctl status kibana.service
 
-# netstat -tulnp | grep 5601
+netstat -tulnp | grep 5601
 tcp        0      0 127.0.0.1:5601          0.0.0.0:*               LISTEN      1487/node
 
 3.Проверка файла конфигурации Kibana:
@@ -95,7 +95,7 @@ http://127.0.0.1:5601/app/dev_tools#/console
 
     GET /_cluster/health?pretty
 
-![Задание 2](Решение%2.png)
+![Задание 2](Решение2.png)
 
 Задание 3. Logstash
 Установите и запустите Logstash и Nginx. С помощью Logstash отправьте лог доступа Nginx в Elasticsearch.
@@ -114,7 +114,6 @@ sudo apt install logstash
 Создал файл конфигурации Logstash /etc/logstash/conf.d/nginx.conf:
 
 input {
-  # Конфигурация ввода для логов Nginx
   file {
     path => "/var/log/nginx/access.log"
     start_position => "beginning"
@@ -134,7 +133,6 @@ HTTP/%{NUMBER:http_version}\" %{NUMBER:response_code} %{NUMBER:body_sent_bytes}
 }
 
 output {
-  # Конфигурация вывода для отправки данных в Elasticsearch
   elasticsearch {
     hosts => ["127.0.0.1:9200"]
     index => "nginx_logs"
@@ -150,7 +148,7 @@ sudo service logstash start
 
     http://192.168.6.128:5601
 
-![Задание 3](Решение%3.png)
+![Задание 3](Решение3.png)
 
 Задание 4. Filebeat.
 Установите и запустите Filebeat. Переключите поставку журналов Nginx с Logstash на Filebeat.
@@ -182,4 +180,4 @@ sudo service filebeat start
 
 http://127.0.0.1:5601
 
-![Задание 4](Решение%4.png)
+![Задание 4](Решение4.png)
